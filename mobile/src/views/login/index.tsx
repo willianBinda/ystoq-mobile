@@ -11,41 +11,30 @@ export default () => {
   });
   const handleInput = (name: string, value: string) => {
     setBody((prevent) => {
-      if (name === 'email') {
-        return {
-          ...prevent,
-          email: value,
-        };
-      } else if (name === 'senha') {
-        return {
-          ...prevent,
-          senha: value,
-        };
-      } else {
-        return {
-          ...prevent,
-        };
-      }
+      return {
+        ...prevent,
+        [name]: value,
+      };
     });
   };
   const onLogin = async () => {
     setSpinner(true);
+    if (!body.email || !body.senha) {
+      Alert.alert('Erro', 'Preencha todas as informações!');
+      setSpinner(false);
+      return;
+    }
     try {
-      const { data, status } = await api.post('/login', body);
-      if (status === 200) {
-        //eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { admin_flag, email, token, ...rest } = data;
-        setStoreData({
-          admin_flag,
-          email,
-          token,
-        });
-        Alert.alert('Bem vindo!', data.message);
-        setSpinner(false);
-      } else {
-        Alert.alert('Erro', data.message);
-        setSpinner(false);
-      }
+      const { data } = await api.post('/login', body);
+      //eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { admin_flag, email, token, ...rest } = data;
+      setStoreData({
+        admin_flag,
+        email,
+        token,
+      });
+      Alert.alert('Bem vindo!', data.message);
+      setSpinner(false);
     } catch (error: any) {
       Alert.alert(
         'Erro',
