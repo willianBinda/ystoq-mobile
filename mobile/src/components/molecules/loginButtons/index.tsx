@@ -2,15 +2,11 @@ import React from 'react';
 import { Label, Pressable, Spinner } from '../../atons';
 import { StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../../types';
 interface Props {
   onLogin: () => void;
   spinner: boolean;
 }
-// Defina os tipos das rotas que o seu app possui
-type RootStackParamList = {
-  Register: undefined;
-  // outras rotas, se houver
-};
 
 export default ({ onLogin, spinner }: Props) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();

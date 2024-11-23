@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, ImageBackground, StyleSheet } from 'react-native';
 import { RegisterCard } from '../../components/organisms';
-import { api } from '../../actions';
+import { axios } from '../../actions';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 type RootStackParamList = {
@@ -53,7 +53,7 @@ export default () => {
       return;
     }
     try {
-      const { data } = await api.post('/usuario', body);
+      const { data } = await axios.post('/usuario', body);
       Alert.alert('Sucesso!', data.detail);
       setSpinner(false);
       navigation.navigate('Login');

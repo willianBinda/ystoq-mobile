@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Alert, ImageBackground, StyleSheet } from 'react-native';
 import { LoginCard } from '../../components/organisms';
-import { api, setStoreData } from '../../actions';
+import { axios, setStoreData } from '../../actions';
+import { Context } from '../../context/authContext';
 
 export default () => {
+  const { setToken, setLogged, setEmail } = useContext(Context);
   const [spinner, setSpinner] = useState(false);
   const [body, setBody] = useState({
     email: '',
@@ -25,15 +27,19 @@ export default () => {
       return;
     }
     try {
-      const { data } = await api.post('/login', body);
+      const { data } = await axios.post('/login', body);
       //eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { admin_flag, email, token, ...rest } = data;
-      setStoreData({
+      await setStoreData({
         admin_flag,
         email,
         token,
       });
       Alert.alert('Bem vindo!', data.message);
+      setToken(token);
+      setEmail(data.email);
+
+      setLogged(true);
       setSpinner(false);
     } catch (error: any) {
       Alert.alert(
