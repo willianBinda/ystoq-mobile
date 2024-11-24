@@ -12,6 +12,10 @@ const setEmail = (dispatch: React.Dispatch<any>) => (bool: string) => {
   dispatch({ type: 'email', payload: bool });
 };
 
+const setSignOut = (dispatch: React.Dispatch<any>) => () => {
+  dispatch({ type: 'signOut' });
+};
+
 const initialState = {
   token: '',
   logged: false,
@@ -26,6 +30,8 @@ const reducer = (state: any, action: any) => {
       return { ...state, logged: action.payload };
     case 'email':
       return { ...state, email: action.payload };
+    case 'signOut':
+      return initialState;
     default:
       return state;
   }
@@ -37,6 +43,7 @@ export const { Context, Provider } = createContext(
     setEmail,
     setLogged,
     setToken,
+    setSignOut,
   },
   initialState,
 );

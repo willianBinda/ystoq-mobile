@@ -4,6 +4,7 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerPage from '../../views/drawer';
 import Dashboard from '../../views/dashboard';
+import Estoque from '../../views/estoque';
 
 export default () => {
   const Drawer = createDrawerNavigator();
@@ -16,6 +17,11 @@ export default () => {
       }}
       drawerContent={DrawerPage}
     >
+      <Drawer.Screen
+        name="Estoque"
+        component={Estoque}
+        options={{ title: '' }}
+      />
       <Drawer.Screen
         name="Dashboard"
         component={Dashboard}

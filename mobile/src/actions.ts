@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //   baseURL: 'https://39a6-177-75-132-37.ngrok-free.app',
 // });
 
-axios.defaults.baseURL = 'https://39a6-177-75-132-37.ngrok-free.app'; // Substitua pela URL do seu backend
+axios.defaults.baseURL = 'https://2350-45-71-225-145.ngrok-free.app'; // Substitua pela URL do seu backend
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 // Adicione um interceptor para incluir o token em todas as requisições

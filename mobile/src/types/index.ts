@@ -8,8 +8,23 @@ export interface RootStackParamList {
 
 export interface AdminDrawerList {
   Dashboard: undefined;
-  Estoques: undefined;
+  Estoque: undefined;
   Usuarios: undefined;
   Produtos: undefined;
   CategoriasProduto: undefined;
+}
+export interface AdminStackList {
+  CadastrarEstoque: undefined;
+  NovaSaida: undefined;
+  NovaEntrada: undefined;
+}
+
+export interface EstoqueType {
+  createdAt: string;
+  descricao: string;
+  endereco: string;
+  id: number;
+  id_empresa: number;
+  quantidade: number;
+  updatedAt: string;
 }
