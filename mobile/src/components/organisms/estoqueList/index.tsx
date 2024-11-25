@@ -12,17 +12,11 @@ interface Props {
   onRefresh: () => void;
 }
 
-export default ({
-  data,
-  onSearch,
-  onPostEstoque,
-  refreshing,
-  onRefresh,
-}: Props) => {
+export default ({ data, onSearch, refreshing, onRefresh }: Props) => {
   return (
     <>
       <View style={styles.header}>
-        <EstoqueOptions onPostEstoque={onPostEstoque} />
+        <EstoqueOptions />
       </View>
       <View style={styles.searchBar}>
         <SearchBar onSearch={onSearch} />
@@ -51,7 +45,7 @@ export default ({
                 <Label style={styles.label} label="Ações " />
 
                 <View style={styles.icons}>
-                  <ListOptionsEstoque />
+                  <ListOptionsEstoque estoqueId={item.id} />
                 </View>
               </View>
             </View>

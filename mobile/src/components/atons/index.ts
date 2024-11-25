@@ -6,6 +6,10 @@ export {
   EditIcon,
   ListIcon,
   SearchIcon,
+  UsersIcon,
+  EyeIcon,
+  ProdutoIcon,
+  ListDrawerIcon,
 } from './icons';
 export { default as Button } from './button';
 export { default as Input } from './input';

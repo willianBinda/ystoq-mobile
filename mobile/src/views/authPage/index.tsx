@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import { getStoreData } from '../../actions';
 import { Context } from '../../context/authContext';
 export default () => {
-  const { setToken, setLogged, setEmail } = useContext(Context);
+  const { setToken, setLogged, setEmail, setAdminFlag } = useContext(Context);
 
   useEffect(() => {
     const velidToken = async () => {
@@ -14,6 +14,7 @@ export default () => {
         setLogged(false);
         setEmail(data.email);
         setToken(data.token);
+        setAdminFlag(data.admin_flag);
       }
       setLogged(true);
     };

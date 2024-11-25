@@ -1,4 +1,4 @@
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 import { axios } from '../../../actions';
@@ -9,6 +9,7 @@ import {
 } from '../../../components/organisms';
 
 export default () => {
+  const navigation = useNavigation();
   const [estoqueList, setEstoqueList] = useState([]);
   const [produtoList, setProdutoList] = useState<
     {
@@ -16,7 +17,6 @@ export default () => {
       label: string;
     }[]
   >([]);
-
   useFocusEffect(
     useCallback(() => {
       const setUp = async () => {
@@ -72,6 +72,15 @@ export default () => {
       const { data } = await axios.post('/movimentacao-estoque', saidaEstoque);
 
       Alert.alert('Sucesso!', data.detail);
+      setSaidaEstoque({
+        id_estoque: null,
+        id_produto: null,
+        quantidade: null,
+        tipo: '0',
+        data: '',
+        descricao: '',
+      });
+      navigation.goBack();
     } catch (error: any) {
       Alert.alert('Erro', 'Não foi possível gerar uma nova entrada!');
     }

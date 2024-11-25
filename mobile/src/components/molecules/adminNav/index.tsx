@@ -5,6 +5,9 @@ import {
   Label,
   Pressable,
   SignOutIcon,
+  UsersIcon,
+  ProdutoIcon,
+  ListDrawerIcon,
 } from '../../atons';
 import { StyleSheet, View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
@@ -13,7 +16,7 @@ import { Context } from '../../../context/authContext';
 import { destroyStoreData } from '../../../actions';
 
 export default () => {
-  const { setSignOut } = useContext(Context);
+  const { setSignOut, state } = useContext(Context);
   const navigation = useNavigation<NavigationProp<AdminDrawerList>>();
   return (
     <>
@@ -38,6 +41,43 @@ export default () => {
         </View>
         <View style={styles.component}>
           <Label label="Estoques" style={styles.label} />
+        </View>
+      </Pressable>
+      {state.adminFlag ? (
+        <Pressable
+          style={styles.row}
+          onPress={() => navigation.navigate('Usuarios')}
+        >
+          <View style={styles.component}>
+            <UsersIcon />
+          </View>
+          <View style={styles.component}>
+            <Label label="Usuários" style={styles.label} />
+          </View>
+        </Pressable>
+      ) : null}
+
+      <Pressable
+        style={styles.row}
+        onPress={() => navigation.navigate('Produtos')}
+      >
+        <View style={styles.component}>
+          <ProdutoIcon />
+        </View>
+        <View style={styles.component}>
+          <Label label="Produtos" style={styles.label} />
+        </View>
+      </Pressable>
+
+      <Pressable
+        style={styles.row}
+        onPress={() => navigation.navigate('CategoriasProduto')}
+      >
+        <View style={styles.component}>
+          <ListDrawerIcon />
+        </View>
+        <View style={styles.component}>
+          <Label label="Categoria de produtos" style={styles.label} />
         </View>
       </Pressable>
 

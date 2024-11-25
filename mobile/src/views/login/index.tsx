@@ -5,7 +5,7 @@ import { axios, setStoreData } from '../../actions';
 import { Context } from '../../context/authContext';
 
 export default () => {
-  const { setToken, setLogged, setEmail } = useContext(Context);
+  const { setToken, setLogged, setEmail, setAdminFlag } = useContext(Context);
   const [spinner, setSpinner] = useState(false);
   const [body, setBody] = useState({
     email: '',
@@ -38,6 +38,7 @@ export default () => {
       Alert.alert('Bem vindo!', data.message);
       setToken(token);
       setEmail(data.email);
+      setAdminFlag(admin_flag);
 
       setLogged(true);
       setSpinner(false);

@@ -13,3 +13,12 @@ export const onPostEstoque = async (body: any) => {
     //   setEstoqueData([]);
   }
 };
+
+export const getEstoqueId = async (id: string) => {
+  const { data } = await axios.get('/estoque/' + id);
+  return data;
+};
+
+export const onPathEstoque = async (id: string, body: any) => {
+  await axios.put('/estoque/' + id, body);
+};

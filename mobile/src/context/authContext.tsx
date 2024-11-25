@@ -5,6 +5,11 @@ const setToken = (dispatch: React.Dispatch<any>) => (token: string) => {
   dispatch({ type: 'token', payload: token });
 };
 
+const setAdminFlag =
+  (dispatch: React.Dispatch<any>) => (adminFlag: boolean) => {
+    dispatch({ type: 'adminFlag', payload: adminFlag });
+  };
+
 const setLogged = (dispatch: React.Dispatch<any>) => (bool: boolean) => {
   dispatch({ type: 'logged', payload: bool });
 };
@@ -20,12 +25,15 @@ const initialState = {
   token: '',
   logged: false,
   email: '',
+  adminFlag: false,
 };
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
     case 'token':
       return { ...state, token: action.payload };
+    case 'adminFlag':
+      return { ...state, adminFlag: action.payload };
     case 'logged':
       return { ...state, logged: action.payload };
     case 'email':
@@ -44,6 +52,7 @@ export const { Context, Provider } = createContext(
     setLogged,
     setToken,
     setSignOut,
+    setAdminFlag,
   },
   initialState,
 );

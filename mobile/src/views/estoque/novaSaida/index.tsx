@@ -2,9 +2,10 @@ import React, { useCallback, useState } from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
 import { axios } from '../../../actions';
 import { Copyright, NovaSaidaEstoqueCard } from '../../../components/organisms';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 export default () => {
+  const navigation = useNavigation();
   const [estoqueList, setEstoqueList] = useState([]);
   const [produtoList, setProdutoList] = useState<
     {
@@ -66,8 +67,16 @@ export default () => {
     }
     try {
       const { data } = await axios.post('/movimentacao-estoque', saidaEstoque);
-
+      setSaidaEstoque({
+        id_estoque: null,
+        id_produto: null,
+        quantidade: null,
+        tipo: '1',
+        data: '',
+        descricao: '',
+      });
       Alert.alert('Sucesso!', data.detail);
+      navigation.goBack();
     } catch (error: any) {
       Alert.alert('Erro', 'Não foi possível gerar uma nova saída!');
     }

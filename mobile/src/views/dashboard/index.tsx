@@ -79,11 +79,11 @@ export default () => {
     useCallback(() => {
       setUp();
 
-      console.log('A tela ganhou foco!');
+      //   console.log('A tela ganhou foco!');
 
       //   // Opcional: Retorne uma função de limpeza se necessário
       return () => {
-        console.log('A tela perdeu o foco!');
+        // console.log('A tela perdeu o foco!');
       };
     }, []),
   );

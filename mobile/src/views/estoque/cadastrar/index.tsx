@@ -23,6 +23,11 @@ export default () => {
     try {
       await axios.post('/estoque', cadastrarEstoque);
       //   setEstoqueData(data);
+      setCadastrarEstoque({
+        descricao: '',
+        endereco: '',
+        quantidade: null,
+      });
       Alert.alert('Sucesso!', 'Estoque cadastrado com sucesso!');
     } catch (error: any) {
       Alert.alert('Erro', 'Não foi possível cadastrar o estoque!');
